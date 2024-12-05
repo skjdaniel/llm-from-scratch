@@ -4,7 +4,7 @@ Sebastian Raschka has a book called "Build a Large Language Model (From Scratch)
 
 I try to simplify the code in Raschka's repo by 1) using `einops` and `einsum` (especially for attention mechanisms) and 2) omitting details that I don't want to focus on. I often use different variable, function, and class names.
 
-There may be (hopefully small) mistakes or inconsistencies that I've missed or haven't bothered to correct.
+There are probably some (hopefully small) mistakes or inconsistencies that I've missed or haven't bothered to correct.
 
 ### Notebooks (brief contents)
 
