@@ -17,9 +17,11 @@ from scratch and load the weights from Hugging Face. Generate text using the sam
 
 - [3-convert-gpt2-to-llama2](https://github.com/skjdaniel/llm-from-scratch/blob/master/3-convert-gpt2-to-llama2.ipynb): Construct Llama 2 (7B). Instantiate a toy model. (I don't train the model, load model weights from somewhere else, or use the model for text generation or question answering.)
 
-- [4-from-llama2-to llama3](https://github.com/skjdaniel/llm-from-scratch/blob/master/4-from-llama2-to-llama3.ipynb): Convert Llama 2 7B to Llama 3 8B. Instantiate a toy Llama 3 model. (I don't train the model or load model weights from elsewhere.)
+- [4-from-llama2-to llama3](https://github.com/skjdaniel/llm-from-scratch/blob/master/4-from-llama2-to-llama3.ipynb): Convert Llama 2 7B to Llama 3 8B. Instantiate a toy Llama 3 model. I don't train the model or load model weights from elsewhere.
 
-- [5-from-llama2-to-llama3-1](https://github.com/skjdaniel/llm-from-scratch/blob/master/5-from-llama3-to-llama3-1.ipynb): Construct Llama 3.1 8B. I don't train the model or load model weights from elsewhere.
+- [5-from-llama2-to-llama3-1](https://github.com/skjdaniel/llm-from-scratch/blob/master/5-from-llama3-to-llama3-1.ipynb): Construct Llama 3.1 8B. (I don't train the model or load model weights from elsewhere.)
+
+- [6-from-llama3-1-to-llama3-2](https://github.com/skjdaniel/llm-from-scratch/blob/master/6-from-llama3-1-to-llama-3-2.ipynb): Construct Llama 3.2 1B. (I don't train the model or load model weights from elsewhere.)
   
 ___
 
@@ -135,4 +137,29 @@ In this notebook:
 - Transformer block.
 - Llama 3.1 model class.
 - Llama 3.1 8B config.
+- Instantiate toy model.
+
+**[6-from-llama3-1-to-llama3-2](https://github.com/skjdaniel/llm-from-scratch/blob/master/6-from-llama3-1-to-llama-3-2.ipynb)**
+
+Construct Llama 3.2 1B.
+
+I don't train the model or load model weights from elsewhere.
+
+Raschka defines a `SharedBuffer` class so that we can reuse the `mask`, `sin`, and `cos` tensors in the transformer blocks. I don't implement this here.
+
+Part of the code for the RoPE implementation is copied from Raschka's repo (the section between `#New section` and `#End new section` ).
+
+Differences between Llama 3.1 8B and Llama 3.2 1B:
+- Llama 3.2 uses weight tying (the weights of the embedding layer are used for the output layer).
+- Llama 3.2 has the same `context_length` as Llama 3.1 (131,072), but has half the embedding dimension (2,048 rather than 4,096) and half the number of transformer blocks (16 rather than 32). The dimension of the hidden layer in the transformer MLP is also much less (8,192 compared with Llama 3.1's 14,336).
+- One of the RoPE parameters is different.
+
+In this notebook:
+- Imports.
+- Llama 3.2 RoPE parameters.
+- RoPE implementation.
+- Grouped-query attention.
+- Transformer block.
+- Llama 3.2 model class.
+- Llama 3.2 1B config.
 - Instantiate toy model.
