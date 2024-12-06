@@ -18,6 +18,9 @@ from scratch and load the weights from Hugging Face. Generate text using the sam
 - [3-convert-gpt2-to-llama2](https://github.com/skjdaniel/llm-from-scratch/blob/master/3-convert-gpt2-to-llama2.ipynb): Construct Llama 2 (7B). Instantiate a toy model. (I don't train the model, load model weights from somewhere else, or use the model for text generation or question answering.)
 
 - [4-from-llama2-to llama3](https://github.com/skjdaniel/llm-from-scratch/blob/master/4-from-llama2-to-llama3.ipynb): Convert Llama 2 7B to Llama 3 8B. Instantiate a toy Llama 3 model. (I don't train the model or load model weights from elsewhere.)
+
+- [5-from-llama2-to-llama3-1](https://github.com/skjdaniel/llm-from-scratch/blob/master/5-from-llama3-to-llama3-1.ipynb): Construct Llama 3.1 8B. I don't train the model or load model weights from elsewhere.
+  
 ___
 
 ### Notebooks (more detailed contents)
@@ -110,3 +113,26 @@ In this notebook:
 - Llama 3 model class.
 - Configuration for Llama 3 8B, Llama 2 7B (for comparison), and a toy Llama 3 model.
 - Instantiate the toy Llama 3 model.
+
+**[5-from-llama2-to-llama3-1](https://github.com/skjdaniel/llm-from-scratch/blob/master/5-from-llama3-to-llama3-1.ipynb)** 
+
+Construct Llama 3.1 8B. 
+
+I don't train the model or load model weights from elsewhere.
+
+Raschka defines a `SharedBuffer` class so that we can reuse the `mask`, `sin`, and `cos` tensors in the transformer blocks. I don't implement this here.
+
+Differences between Llama 3 and Llama 3.1:
+- Llama 3.1 has a larger `context_length` (131,072 compared with Llama 3's 8,192)
+- Llama 3.1's RoPE method differs from Llama 3's. There are some additional adjustments to the inverse frequency calculations. I haven't gone through these adjustments in detail; for this part I just copy the relevant code from Raschka's repo.
+
+In this notebook:
+- Imports.
+- Llama 3.1 RoPE parameters.
+- Implement RoPE.
+- Illustration of effects of applying RoPE.
+- Grouped-query attention.
+- Transformer block.
+- Llama 3.1 model class.
+- Llama 3.1 8B config.
+- Instantiate toy model.
